@@ -38,14 +38,30 @@ export class NavService {
         name: this.translate.instant('Segumiento'),
         title: true
       },
+
+      {
+        name: this.translate.instant('Grupos'),
+        url: '/base',
+        iconComponent: { name: 'cil-people' },
+        children: [
+          {
+            name: this.translate.instant('ListGrups'),
+            url: '/research-group',
+            icon: 'nav-icon-bullet'
+          },
+          
+        ]
+      },
+
+
       {
         name: this.translate.instant('Estudiantes'),
         url: '/base',
         iconComponent: { name: 'cilPeople' },
         children: [
           {
-            name: this.translate.instant('Accordion'),
-            url: '/base/accordion',
+            name: this.translate.instant('ListStudents'),
+            url: '/student',
             icon: 'nav-icon-bullet'
           },
           {
