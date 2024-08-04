@@ -1,35 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentService } from '../core/services/student.service';
+import { UserService } from '../../core/services/user.service';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.scss'],
-  standalone: true, // Esto indica que el componente es standalone
-  imports: [] // Aquí puedes importar otros módulos si es necesario
+  selector: 'app-get-user',
+  templateUrl: './get-user.component.html',
+  styleUrls: ['./get-user.component.scss'],
+  standalone: true,
+  imports: [],
 })
-export class StudentComponent implements OnInit {
+export class GetUserComponent implements OnInit {
 
-  constructor(private studentService: StudentService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.studentService.getStudents().subscribe(data => {
+    this.userService.getUsers().subscribe(data => {
       $(document).ready(function() {
-        $('#studentTable').DataTable({
-          data: data.data.items.map((item: any) => ({
-            id: item.id,
-            email: item.user.email,
-            firstName: item.user.firstName,
-            lastName: item.user.lastName
-          })),
+        $('#userTable').DataTable({
+          data: data.data.items,
           "pageLength": 5,
           columns: [
             { title: "ID", data: "id" },
-            { title: "Email", data: "email" },
-            { title: "FirstName", data: "firstName" },
+            { title: "Name", data: "firstName" },
             { title: "LastName", data: "lastName" },
+            { title: "Email", data: "email" }
           ],
           responsive: true,
           dom: 'Bfrtip',
@@ -41,7 +36,6 @@ export class StudentComponent implements OnInit {
             buttons: [{
                 text: 'Copiar',
                 extend: 'copy',
-
             }, {
                 extend: 'pdf'
             }, {
@@ -52,16 +46,13 @@ export class StudentComponent implements OnInit {
                 text: 'Imprimir',
                 extend: 'print'
             }]
-        }, {
+          }, {
             extend: 'colvis',
             text: 'Visor de columnas',
             collectionLayaut: 'fixed three-column'
-        }]
+          }]
         });
-       
       });
     });
   }
 }
-
-

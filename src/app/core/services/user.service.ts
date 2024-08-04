@@ -6,17 +6,16 @@ import { BaseService } from './base-service';
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService extends BaseService {
+export class UserService extends BaseService {
   constructor(http: HttpClient) {
     super(http);
   }
 
-  getStudents(): Observable<any> {
+  getUsers(): Observable<any> {
     return this.getAll();
   }
 
-  createStudent(data: any): Observable<any> {
+  createUser(data: any): Observable<any> {
     return this.create(data);
   }
-
 }

@@ -44,7 +44,30 @@ export const routes: Routes = [
         loadChildren: () => import('./research-group/routes').then((m) => m.routes)
       },
       { path: 'student',
-        loadChildren: () => import('./student/routes').then((m) => m.routes)
+        children: [
+          { path: 'get-student',
+          loadChildren: () => import('./student/get-student/routes').then((m) => m.routes)
+          },
+          { path: 'create-student',
+          loadChildren: () => import('./student/create-student/routes').then((m) => m.routes)
+           }, 
+           { path: 'update-student',
+            loadChildren: () => import('./student/update-student/routes').then((m) => m.routes)
+            }, 
+            { path: 'delete-student',
+              loadChildren: () => import('./student/delete-student/routes').then((m) => m.routes)
+            },       
+          ]
+      },
+      { path: 'user',
+        children: [
+        { path: 'get-user',
+        loadChildren: () => import('./user/get-user/routes').then((m) => m.routes)
+        },
+        { path: 'create-user',
+        loadChildren: () => import('./user/create-user/routes').then((m) => m.routes)
+         },        
+        ]
       },
       {
         path: 'base',

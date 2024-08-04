@@ -40,7 +40,7 @@ export class NavService {
       },
 
       {
-        name: this.translate.instant('Grupos'),
+        name: this.translate.instant('Groups'),
         url: '/base',
         iconComponent: { name: 'cil-people' },
         children: [
@@ -48,12 +48,10 @@ export class NavService {
             name: this.translate.instant('ListGrups'),
             url: '/research-group',
             icon: 'nav-icon-bullet'
-          },
+          }
           
         ]
       },
-
-
       {
         name: this.translate.instant('Estudiantes'),
         url: '/base',
@@ -61,77 +59,49 @@ export class NavService {
         children: [
           {
             name: this.translate.instant('ListStudents'),
-            url: '/student',
+            url: '/student/get-student',
             icon: 'nav-icon-bullet'
           },
           {
-            name: this.translate.instant('Breadcrumbs'),
-            url: '/base/breadcrumbs',
+            name: this.translate.instant('CreateStudent'),
+            url: '/student/create-student',
             icon: 'nav-icon-bullet'
           },
           {
-            name: this.translate.instant('Cards'),
-            url: '/base/cards',
+            name: this.translate.instant('UpdateStudent'),
+            url: '/student/update-student',
             icon: 'nav-icon-bullet'
           },
           {
-            name: this.translate.instant('Carousel'),
-            url: '/base/carousel',
+            name: this.translate.instant('DeleteStudent'),
+            url: '/student/delete-student',
+            icon: 'nav-icon-bullet'
+          }
+        ]
+      },
+      {
+        name: this.translate.instant('Usuarios'),
+        url: '/base',
+        iconComponent: { name: 'cil-people' },
+        children: [
+          {
+            name: this.translate.instant('ListUsers'),
+            url: '/user/get-user',
             icon: 'nav-icon-bullet'
           },
           {
-            name: this.translate.instant('Collapse'),
-            url: '/base/collapse',
+            name: this.translate.instant('createUser'),
+            url: '/user/create-user',
             icon: 'nav-icon-bullet'
           },
           {
-            name: this.translate.instant('List Group'),
-            url: '/base/list-group',
+            name: this.translate.instant('updateUser'),
+            url: '/user/update-user',
             icon: 'nav-icon-bullet'
           },
           {
-            name: this.translate.instant('Navs & Tabs'),
-            url: '/base/navs',
-            icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('Pagination'),
-            url: '/base/pagination',
-            icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('Placeholder'),
-            url: '/base/placeholder',
-            icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('Popovers'),
-            url: '/base/popovers',
-            icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('Progress'),
-            url: '/base/progress',
-            icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('Spinners'),
-            url: '/base/spinners',
-            icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('Tables'),
-            url: '/base/tables',
-            icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('Tabs'),
-            url: '/base/tabs',
-            icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('Tooltips'),
-            url: '/base/tooltips',
+            name: this.translate.instant('deleteUser'),
+            url: '/user/delete-user',
             icon: 'nav-icon-bullet'
           }
         ]
@@ -145,7 +115,7 @@ export class NavService {
             name: this.translate.instant('ListGrups'),
             url: '/research-group',
             icon: 'nav-icon-bullet'
-          },
+          }
           
         ]
       },
