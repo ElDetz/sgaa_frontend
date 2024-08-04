@@ -38,7 +38,7 @@ export class CreateUserComponent {
       this.userService.createUser(formData).subscribe(
         response => {
           console.log('User created successfully', response);
-          this.router.navigate(['/list-user']); // Asegúrate de tener esta ruta configurada
+          this.router.navigate(['/list-user']);
         },
         error => {
           console.error('Error creating user', error);

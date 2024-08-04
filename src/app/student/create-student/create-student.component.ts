@@ -1,37 +1,72 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../core/services/user.service';
 import { StudentService } from '../../core/services/student.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-create-student',
-  templateUrl: './create-student.component.html',
-  styleUrls: ['./create-student.component.scss'],
   standalone: true,
-  imports: []
+  imports: [
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  templateUrl: './create-student.component.html',
+  styleUrls: ['./create-student.component.scss']
 })
 export class CreateStudentComponent {
   studentForm: FormGroup;
+  private defaultTenantId = 'B542BF25-134C-47A2-A0DF-84ED14D03C4A';
 
-  constructor(private fb: FormBuilder, private studentService: StudentService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private studentService: StudentService,
+    private router: Router
+  ) {
     this.studentForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', Validators.required],
-      lastName: ['', Validators.required]
+      lastName: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      code: ['', Validators.required]
     });
   }
 
   onSubmit() {
     if (this.studentForm.valid) {
-      this.studentService.createStudent(this.studentForm.value).subscribe(
-        response => {
-          console.log('Student created successfully', response);
-          // Navegar a otra página o mostrar un mensaje de éxito
-          this.router.navigate(['/students']); // Asegúrate de tener esta ruta configurada
+      const userFormData = {
+        email: this.studentForm.get('email')?.value,
+        firstName: this.studentForm.get('firstName')?.value,
+        lastName: this.studentForm.get('lastName')?.value,
+        password: this.studentForm.get('password')?.value,
+        tenantId: this.defaultTenantId
+      };
+
+      this.userService.createUser(userFormData).subscribe(
+        userResponse => {
+          console.log('User created successfully', userResponse);
+
+          // Asegúrate de que userResponse.id contenga el userId del usuario creado
+          const studentFormData = {
+            userId: userResponse.data, // Aquí debe estar el campo correcto donde se encuentra el userId
+            code: this.studentForm.get('code')?.value
+          };
+
+          this.studentService.createStudent(studentFormData).subscribe(
+            studentResponse => {
+              console.log('Student created successfully', studentResponse);
+              this.router.navigate(['/list-student']);
+            },
+            studentError => {
+              console.error('Error creating student', studentError);
+            }
+          );
         },
-        error => {
-          console.error('Error creating student', error);
-          // Manejar el error, mostrar un mensaje de error, etc.
+        userError => {
+          console.error('Error creating user', userError);
         }
       );
     }
