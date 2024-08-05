@@ -66,7 +66,13 @@ export const routes: Routes = [
         },
         { path: 'create-user',
         loadChildren: () => import('./user/create-user/routes').then((m) => m.routes)
-         },        
+         },    
+        { path: 'update-user/:id',
+          loadChildren: () => import('./user/update-user/routes').then((m) => m.routes)
+          },
+        { path: 'delete-user',
+          loadChildren: () => import('./user/delete-user/routes').then((m) => m.routes)
+        }    
         ]
       },
       {

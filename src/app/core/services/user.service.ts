@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams ,HttpHeaders} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseService } from './base-service';
 
@@ -17,5 +17,17 @@ export class UserService extends BaseService {
 
   createUser(data: any): Observable<any> {
     return this.create(data);
+  }
+
+  getByUser(id: number | string): Observable<any> {
+    return this.getById(id);
+  }
+
+  updateUser(id: number, data: any): Observable<any> {
+    return this.update(id, data);
+  }
+
+  deleteUser(id: number): Observable<any> {
+    return this.delete(id);
   }
 }

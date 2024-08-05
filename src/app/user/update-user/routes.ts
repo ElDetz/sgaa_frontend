@@ -4,7 +4,7 @@ export const routes: Routes = [
     
         {
             path: '',
-            loadComponent: () => import('././delete-student.component').then(m => m.DeleteStudentComponent),
+            loadComponent: () => import('././update-user.component').then(m => m.UpdateUserComponent),
           
             
           }

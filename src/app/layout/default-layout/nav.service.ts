@@ -66,16 +66,6 @@ export class NavService {
             name: this.translate.instant('CreateStudent'),
             url: '/student/create-student',
             icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('UpdateStudent'),
-            url: '/student/update-student',
-            icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('DeleteStudent'),
-            url: '/student/delete-student',
-            icon: 'nav-icon-bullet'
           }
         ]
       },
@@ -92,16 +82,6 @@ export class NavService {
           {
             name: this.translate.instant('createUser'),
             url: '/user/create-user',
-            icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('updateUser'),
-            url: '/user/update-user',
-            icon: 'nav-icon-bullet'
-          },
-          {
-            name: this.translate.instant('deleteUser'),
-            url: '/user/delete-user',
             icon: 'nav-icon-bullet'
           }
         ]
